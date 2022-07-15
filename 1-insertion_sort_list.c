@@ -12,39 +12,38 @@ void insertion_sort_list(listint_t **list)
 
 	if (list == NULL || *list == NULL)
 		return;
-	if ((*list)->prev == NULL)
+	while (temp->next != NULL)
 	{
-		while (temp->next != NULL)
+		if (temp->n < temp->next->n)
 		{
-			if (temp->n < temp->next->n)
-				temp = temp->next;
-			else if (temp->n > temp->next->n)
+			temp = temp->next;
+		}
+		else if (temp->n > temp->next->n)
+		{
+			current = temp, move = temp->next, current->next = move->next;
+			while (move->n < temp->n)
 			{
-				current = temp, move = temp->next, current->next = move->next;
-				while (move->n < temp->n)
+				if (temp->prev != NULL)
 				{
-					if (temp->prev != NULL)
+					temp = temp->prev, temp_1 = temp->next, temp->next = move;
+					if (temp_1->next != NULL && temp->next->n == temp_1->next->n)
 					{
-						temp = temp->prev, temp_1 = temp->next, temp->next = move;
-						if (temp_1->next != NULL && temp->next->n == temp_1->next->n)
-						{
-							temp_2 = temp_1->next->next, temp_1->next = temp_2;
-							temp_2->prev = temp_1;
-						}
-						move->prev = temp, move->next = temp_1;
-						temp_1->prev = move, print_list(*list);
+						temp_2 = temp_1->next->next, temp_1->next = temp_2;
+						temp_2->prev = temp_1;
 					}
-					else
-					{
-						move->prev = NULL, temp_2 = temp->next->next, temp->next = temp_2;
-						temp_2->prev = temp, move->next = temp, temp->prev = move;
-						*list = move, print_list(*list);
-						break;
+					move->prev = temp, move->next = temp_1;
+					temp_1->prev = move, print_list(*list);
 					}
+				else
+				{
+					move->prev = NULL, temp_2 = temp->next->next, temp->next = temp_2;
+					temp_2->prev = temp, move->next = temp, temp->prev = move;
+					*list = move, print_list(*list);
+					break;
 				}
-				temp = current;
 			}
-
+			temp = current;
 		}
 	}
+
 }
