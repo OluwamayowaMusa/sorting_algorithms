@@ -20,30 +20,37 @@ int sorted_array(int *array, size_t size)
 	return (1);
 }
 
+
 /**
- * bubble_sort - Sorts an array using bubble sort algorithm
- *
- * @array: Array to be sorted
- * @size: Number of elements in @array
+ * selection_sort - Sorts an array using selection sort algorithm
+ * @array: Array passed
+ * @size: Size of @array
  */
-void bubble_sort(int *array, size_t size)
+void selection_sort(int *array, size_t size)
 {
-	size_t i = 0;
-	int temp;
+	size_t i, j = 0, index;
+	int min, temp;
 
 	while (array)
 	{
 		if (sorted_array(array, size) == 1)
 			break;
-		if (i + 1 == size)
-			i = 0;
-		if (array[i] > array[i + 1])
+		i = j;
+		min = array[i];
+		temp = min;
+		while (i < size)
 		{
-			temp = array[i];
-			array[i] = array[i + 1];
-			array[i + 1] = temp;
+			if (min > array[i])
+				min = array[i], index = i;
+			i++;
+		}
+		if (temp != min)
+		{
+			temp = array[j];
+			array[j] = min;
+			array[index] = temp;
 			print_array(array, size);
 		}
-		i++;
+		j++;
 	}
 }
