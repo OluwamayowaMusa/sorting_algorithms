@@ -8,7 +8,7 @@
 int main(void)
 {
 	listint_t *list;
-	int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
+	int array[] = { 52, 97, 40, 75, 28, 64, 86, 77, 7, 43, 84, 23, 8, 49, 94};
 	size_t n = sizeof(array) / sizeof(array[0]);
 
 	list = create_listint(array, n);
