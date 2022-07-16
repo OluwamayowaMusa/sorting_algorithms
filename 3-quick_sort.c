@@ -88,8 +88,6 @@ void quick_sort_algo(int *array, size_t low, size_t high, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (size <= 2)
-		return;
 	if (array)
 	{
 		if (sorted_array(array, size) == 1)
