@@ -2,6 +2,7 @@
 
 /**
  * sorted_array - Check if an array is sorted
+ *
  * @array: Array passed
  * @size: Size of @array
  *
@@ -22,6 +23,7 @@ int sorted_array(int *array, size_t size)
 
 /**
  * lomuto_partition - Lomuto partition
+ *
  * @array: Array passed
  * @low: Least Index
  * @high: Highest Index
@@ -61,6 +63,7 @@ size_t lomuto_partition(int *array, size_t low, size_t high, size_t size)
 
 /**
  * quick_sort_algo - Implements quick sort algorithm using lomuto partition
+ *
  * @array: Array passed
  * @low: Lowest index in partion
  * @high: Highest index in partition
