@@ -8,42 +8,42 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *temp = *list, *current, *move, *temp_1, *temp_2;
+	listint_t *tmp = NULL, *current, *mv, *tmp_1, *tmp_2, *store;
 
-	while (temp->next != NULL)
+	list != NULL ? tmp = *list : NULL;
+	while (tmp != NULL && tmp->next != NULL)
 	{
-		if (temp->n <= temp->next->n)
-			temp = temp->next;
-		else if (temp->n > temp->next->n)
+		if (tmp->n <= tmp->next->n)
+			tmp = tmp->next;
+		else if (tmp->n > tmp->next->n)
 		{
-			current = temp, move = temp->next, current->next = move->next;
-			move->next != NULL ? move->next->prev = current : NULL;
-			while (move->n < temp->n)
+			current = tmp, mv = tmp->next, current->next = mv->next;
+			mv->next != NULL ? mv->next->prev = current : NULL;
+			while (mv->n < tmp->n)
 			{
-				if (temp->prev != NULL)
+				if (tmp->prev != NULL)
 				{
-					temp = temp->prev, temp_1 = temp->next, temp->next = move;
-					if (temp_1->next != NULL && temp->next == temp_1->next)
+					tmp = tmp->prev, tmp_1 = tmp->next, tmp->next = mv;
+					if (tmp_1->next != NULL && tmp->next == tmp_1->next)
 					{
-						temp_2 = temp_1->next->next, temp_1->next = temp_2;
-						temp_2 != NULL ? temp_2->prev = temp_1 : NULL;
+						tmp_2 = tmp_1->next->next, tmp_1->next = tmp_2;
+						tmp_2 != NULL ? tmp_2->prev = tmp_1 : NULL;
 					}
-					move->prev = temp, move->next = temp_1;
-					temp_1->prev = move, print_list(*list);
+					mv->prev = tmp, mv->next = tmp_1, tmp_1->prev = mv, print_list(*list);
 				}
 				else
 				{
-					move->prev = NULL;
-					if (temp->next != NULL && temp->next == move)
+					mv->prev = NULL;
+					if (tmp->next != NULL && tmp->next == mv)
 					{
-						temp_2 = temp->next->next, temp->next = temp_2;
-						temp_2 != NULL ? temp_2->prev = temp : NULL;
+						tmp_2 = tmp->next->next, tmp->next = tmp_2;
+						tmp_2 != NULL ? tmp_2->prev = tmp : NULL;
 					}
-					move->next = temp, temp->prev = move, *list = move, print_list(*list);
+					mv->next = tmp, tmp->prev = mv, *list = mv, print_list(*list);
 					break;
 				}
 			}
-			temp = current;
+			tmp = current;
 		}
 	}
 
