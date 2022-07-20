@@ -31,17 +31,14 @@ int sorted_array(int *array, size_t size)
  */
 void shell_sort(int *array, size_t size)
 {
-	size_t gap = 1, i, j;
-	int temp;
+	size_t gap = 1, i, j, ctrl = 0;
+	int tmp;
 
 	while (gap < size)
 		gap = gap * 3 + 1;
 	while (array)
 	{
-		if (sorted_array(array, size) == 1 && gap == 1)
-			print_array(array, size);
-		if (sorted_array(array, size) == 1)
-			return;
+		ctrl = 0;
 		gap > 1 ? gap /= 3 : 0;
 		for (j = 0; j < size - 1; j++)
 		{
@@ -53,17 +50,22 @@ void shell_sort(int *array, size_t size)
 				while (i > j)
 				{
 					if (array[i] < array[i - gap])
-						temp = array[i], array[i] = array[i - gap], array[i - gap] = temp;
+						tmp = array[i], array[i] = array[i - gap], array[i - gap] = tmp;
 					i -= gap;
 				}
 			}
 			else
 			{
 				if (array[i] > array[i + gap])
-					temp = array[i], array[i] = array[i + gap], array[i + gap] = temp;
+					tmp = array[i], array[i] = array[i + gap], array[i + gap] = tmp, ctrl = 1;
 			}
 		}
 		if (gap != 1)
 			print_array(array, size);
+		else if (gap == 1 && ctrl == 0)
+		{
+			print_array(array, size);
+			break;
+		}
 	}
 }
