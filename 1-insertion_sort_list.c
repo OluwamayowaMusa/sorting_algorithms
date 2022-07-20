@@ -8,7 +8,7 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *tmp = NULL, *current, *mv, *tmp_1, *tmp_2, *store;
+	listint_t *tmp = NULL, *current, *mv, *tmp_1, *tmp_2;
 
 	list != NULL ? tmp = *list : NULL;
 	while (tmp != NULL && tmp->next != NULL)
