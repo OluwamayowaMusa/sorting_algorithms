@@ -106,6 +106,8 @@ void cocktail_sort_list(listint_t **list)
 {
 	listint_t *temp = NULL;
 
+	if (list == NULL)
+		return;
 	temp = *list;
 	while (temp)
 	{
